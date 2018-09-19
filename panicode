@@ -68,7 +68,7 @@ Class PaniCode_{
 
 	public function ActionList()
 	{
-		self::$ActionList = ['PHP Server','Create Modules','Create Class','Database'];
+		self::$ActionList = ['PHP Server','Create Modules','Create Class','Database','Routes'];
 		$n=0;
 		foreach(self::$ActionList as $list)
 		{
@@ -76,7 +76,32 @@ Class PaniCode_{
 		}
 		echo PHP_EOL;
 	}
+	public function console($cmd)
+	{
+if(function_exists('system')) {     
+    @ob_start();    
+    @system($cmd);    
+    $c = @ob_get_contents();    
+    @ob_end_clean();    
+    return $c;  
+  } elseif(function_exists('exec')) {     
+    @exec($cmd,$results);     
+    $c = "";    
+    foreach($results as $result) {      
+      $c .= $result;    
+    } return $c;  
+  } elseif(function_exists('passthru')) {     
+    @ob_start();    
+    @passthru($cmd);    
+    $c = @ob_get_contents();    
+    @ob_end_clean();    
+    return $c;  
+  } elseif(function_exists('shell_exec')) {     
+    $c = @shell_exec($cmd);     
+    return $c;  
+  }
 
+	}
 	public function TakeAction()
 	{
 		require 'commander/template.php';

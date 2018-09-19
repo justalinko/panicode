@@ -16,13 +16,13 @@
 			<h1 class="fs-xxlarge">PaniC{/}de</h1>
 			<h4>Code for fast project </h4>
 			<div class="spacer-1">
-				<a href="#" class="btn primary">Download</a> &nbsp; <a href="#" class="btn primary">Documentation</a>
+				<a href="#" class="btn dark">Download</a> &nbsp; <a href="#" class="btn dark">Documentation</a>
 			</div>
 			<small>Version 1.0-2018</small>
 		</header>
 
 	</div>
-	<footer class="align-center">
-		<p>Copyright &copy; 2018 <span class="text-info">PaniCode</span> | Created with <span class="text-danger">&lt;3</span> & <span class="text-success">&lt;/&gt;</span> by <span class="text-info">alinko.ID</span></p>
+	<footer class="align-center text-black">
+		<p>Copyright &copy; 2018 <span class="text-dark">PaniC{/}de</span> | Created with <span class="text-dark">&lt;3</span> & <span class="text-dark">&lt;/&gt;</span> by <span class="text-dark">alinko.ID</span></p>
 	</footer>
 </html>	
