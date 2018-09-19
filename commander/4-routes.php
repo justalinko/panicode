@@ -24,7 +24,7 @@ Class Routes extends PaniCode_{
 	public  function SubActionList()
 	{
 		echo PHP_EOL;
-		self::$ActionList = ['Default routes','','Get from file'];
+		self::$ActionList = ['Default routes'];
 		$n=1;
 		foreach(self::$ActionList as $list)
 		{
@@ -32,5 +32,23 @@ Class Routes extends PaniCode_{
 		}
 		echo PHP_EOL;
 	}
+	public function SubTakeAction()
+	{
+		$a=self::$readLine;
+		if($a == '1')
+		{
+			echo "Set default routes ::";$route=trim(fgets(STDIN));
+			require 'config/route.php';
+			$droute=$CONFIG['route']['default'];
+			$rr=str_replace($droute,$route,@file_get_contents('config/route.php'));
+			if(@file_put_contents('config/route.php',$rr))
+			{
+				self::Message('success');
+			}else{
+				self::Message('failed');
+			}
+		}
+	}
 }
+Routes::PanicNow();
 ?>
