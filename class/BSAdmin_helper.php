@@ -22,17 +22,7 @@ Class BSAdmin_helper{
 
 		return $html;
 	}
-	public function tr($max = 1,$content = array())
-	{
-		$html = "<tr>";
-		for($i=0;$i<=$max;$i++)
-		{
-			$html.="<td>".$content[$i]."</td>";
-		}
-		$html.="</tr>";
 
-		return $html;
-	}
 	public function maxchar($max = 100,$string)
 	{
 		$string = strip_tags($string);

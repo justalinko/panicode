@@ -42,6 +42,65 @@ Class html_helper{
 		$html.="<!-- End html helper -->\n\n";
 		return $html;
 	}
+	public function tr($content = array())
+	{
+		$html = "<tr>";
+		for($i=0;$i<=count($content)-1;$i++)
+		{
+			$html.="<td>".$content[$i]."</td>".PHP_EOL;
+		}
+		$html.="</tr>\n";
+
+		return $html;
+	}
+	public function table_open($property = array(),$th = array())
+	{
+		$html = "<!-- start table open | panicode html helper -->".PHP_EOL;
+		$html.= "<table ";
+		if(is_array($property) && !empty($property))
+		{
+			foreach($property as $prop=>$val)
+			{
+				$html.= " $prop='$val' ";
+			}
+		}
+		$html.= " >";
+		$html.=PHP_EOL;
+		$html.= "<thead>";
+		for($i=0;$i<=count($th)-1;$i++)
+		{
+			$html.="<th>".$th[$i]."</th>".PHP_EOL;
+		}
+		$html.="</thead>".PHP_EOL;
+		$html.="<tbody>";
+		$html.=PHP_EOL;
+		$html.="<!-- end table open -->".PHP_EOL;
+
+		return $html;
+
+	}
+	public function table_close()
+	{
+		$html = "<!-- close table | panicode html helper-->".PHP_EOL;
+		$html.="</tbody>".PHP_EOL;
+		$html.="</table>";
+		return $html;
+	}
+	public function input($type='text',$name,$attr = array())
+	{
+		$html = "<input type=\"".$type."\" name=\"".$name."\" ";
+		if(is_array($attr) && !empty($attr))
+		{
+			foreach($attr as $atr=>$val)
+			{
+				$html.=$atr."=\"".$val."\" ";
+			}
+		}
+		$html.= " />";
+		$html.=PHP_EOL;
+		$html.="<!-- input html helper | panicode -->".PHP_EOL;
+		return $html;
+	}
 
 }
 ?>

@@ -24,7 +24,7 @@ Class Routes extends PaniCode_{
 	public  function SubActionList()
 	{
 		echo PHP_EOL;
-		self::$ActionList = ['Default routes'];
+		self::$ActionList = ['Default routes','Header static','Sidebar static','Footer static','Base Dir'];
 		$n=1;
 		foreach(self::$ActionList as $list)
 		{
@@ -34,11 +34,12 @@ Class Routes extends PaniCode_{
 	}
 	public function SubTakeAction()
 	{
+		require 'config/route.php';
+		
 		$a=self::$readLine;
 		if($a == '1')
 		{
 			echo "Set default routes ::";$route=trim(fgets(STDIN));
-			require 'config/route.php';
 			$droute=$CONFIG['route']['default'];
 			$rr=str_replace($droute,$route,@file_get_contents('config/route.php'));
 			if(@file_put_contents('config/route.php',$rr))
@@ -46,6 +47,13 @@ Class Routes extends PaniCode_{
 				self::Message('success');
 			}else{
 				self::Message('failed');
+			}
+		}elseif($a == '2')
+		{
+			if(empty($CONFIG['route']['header_static']))
+			{
+				echo "[!] config : header_static , masih kosong anda harus mengisi nya secara manual.";
+				self::console('nano ./config/route.php');
 			}
 		}
 	}

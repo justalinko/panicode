@@ -17,6 +17,8 @@
 * Default route :: ./includes/AppMain.php
 */
 
+$CONFIG['route']['base_dir'] = './includes/';
+
 $CONFIG['route']['default'] = 'AppMain';
 
 $CONFIG['route']['static_header'] = '';

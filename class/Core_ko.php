@@ -129,7 +129,7 @@ Class Core_ko{
 	@header("Content-type: application/msword");
 	@header("Content-disposition: inline; filename=".$filename);
 	}
-	public function redirect($kmn,$type = 'php',$delay = 0)
+	public function redirect($kmn,$type = 'html',$delay = 0)
 	{
 		if($type == 'php'){
 		header('location:'.$kmn);
@@ -217,36 +217,6 @@ Class Core_ko{
 	public function rupiah($rp)
 	{
 		return str_replace(",",".",number_format($rp));
-	}
-	public function getAssets($ex,$filname)
-	{
-		$path= $this->config['base_url'].'/assets/'.$ex.'/'.$filname.'.'.$ex;
-		if($ex == 'css')
-		{
-			$d = '<!-- MaFrame library -->';
-			$d.= "\n";
-			$d.= '<link rel="stylesheet" type="text/css" href="'.$path.'">';
-			$d.= "\n";
-		}elseif($ex == 'js')
-		{
-			$d = '<!-- MaFrame library -->';
-			$d.= "\n";
-			$d = '<script type="text/javascript" src="'.$path.'"></script>';
-			$d.= "\n";
-		}
-		return $d;
-	}
-	
-
-	public function view($filename,$src)
-	{
-		if($src == 'lib')
-		{
-			require $this->config['source_path'].'/'.$filename.'.php';
-		}elseif($src == 'inc')
-		{
-			require $this->config['include_path'].'/'.$filename.'.php';
-		}
 	}
 	public function alert($msg,$direct)
 	{

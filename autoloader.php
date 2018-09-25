@@ -20,3 +20,7 @@ if(file_exists('db-config.panicode.php'))
 // Declare new class html_helper 
 $html = new html_helper;
 // Generated date : Sat,22 Sep 2018 03:30:16
+
+// Declare new class fedoracss_helper 
+$fedoracss = new fedoracss_helper;
+// Generated date : Tue,25 Sep 2018 10:45:31

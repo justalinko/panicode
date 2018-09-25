@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,19 +10,20 @@
 	<?=$html->assets('addon.css','link');?>
 </head>
 <body>
-	<div class="container-full spacer-4">
-		<header class="align-center">
-			<h1 class="fs-xxlarge">PaniC{/}de</h1>
-			<h4>Code for fast project </h4>
-			<div class="spacer-1">
-				<?=$fedoracss->button('dark','Download',['onclick' => 'window.open("https://github.com/justalinko/panicode")']);?>&nbsp;
-				<?=$fedoracss->button('dark','Documentation');?>
-			</div>
-			<small>Version 1.0-2018</small>
-		</header>
+	<?=$fedoracss->alert('info w-75 margin-auto text-center align-center','<h3 class="align-center"> PaniCode - Code for fast project.</h3>');?>
+	<div class="container w-75 margin-auto">
+		<br><br>
+	<?=$fedoracss->button('danger','tambah kelas',['onclick' => 'window.location.href="?p=crud_panicode&m=tambah_kelas"']);?>&nbsp;
+	<?=$fedoracss->button('warning','tambah jurusan',['onclick' => 'window.location.href="?p=crud_panicode&m=tambah_jurusan"']);?>&nbsp;
+	<?=$fedoracss->button('success','tambah siswa',['onclick' => 'window.location.href="?p=crud_panicode&m=tambah_siswa"']);?>&nbsp;
+	<?=$fedoracss->button('info','semua data',['onclick' => 'window.location.href="?p=crud_panicode&m=all"']);?>&nbsp;
 
-	</div>
-	<footer class="align-center text-black">
-		<p>Copyright &copy; 2018 <span class="text-dark">PaniC{/}de</span> | Created with <span class="text-dark">&lt;3</span> & <span class="text-dark">&lt;/&gt;</span> by <span class="text-dark">alinko.ID</span></p>
-	</footer>
-</html>	
+<script type="text/javascript">
+		function select_all(pilih)
+            {
+                var cek = document.getElementsByName('select[]');
+                for (var i =0; n=cek.length;i++) {
+                    cek[i].checked = pilih.checked;
+                }
+            }
+</script>

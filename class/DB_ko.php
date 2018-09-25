@@ -31,23 +31,41 @@ Class DB_ko{
 		$r = mysqli_query($this->connection,$q);
 		return $r;
 	}
+	public function multiselect($table = array(),$where = array())
+	{
+		$sql = "SELECT * FROM ";
+		
+		$ctbl = count($table)-1;
+
+		for($i=0;$i<=$ctbl;$i++)
+		{
+			$sql.=$table[$i];
+			if($i != $ctbl)
+			{
+				$sql.=",";
+			}
+		}
+		$sql.=" WHERE ";
+		$cw = count($where)-1;
+		$n=0;
+		foreach($where as $wh=>$val)
+		{
+			$sql.= "$wh=$val";
+			if($n++ != $cw){
+			$sql.=" AND ";
+		 	}
+		}
+		$sql.= "";
+
+		return $this->query($sql);
+
+	}
 	public function fetch($a)
 	{
 		$r = mysqli_fetch_array($a);
 		return $r;
 	}
-	public function select_siteconfig($kolom)
-	{
-		$q = $this->query("SELECT * FROM ko_siteconfig");
-		$f = $this->fetch($q);
 
-		if(!json_decode($f[$kolom]))
-		{
-			return $f[$kolom];
-		}else{
-			return json_decode($f[$kolom]);
-		}
-	}
 	public function assoc($a)
 	{
 		$r = mysqli_fetch_assoc($a);
@@ -84,6 +102,7 @@ Class DB_ko{
 		#print_r($sql);
 		return $this->query($sql);
 	}
+	
 	public function insert($table,$data = array())
 	{
 		$sql = "INSERT INTO $table VALUES(";
@@ -102,6 +121,8 @@ Class DB_ko{
 	$sql.= ")";
 	return $this->query($sql);
 	}
+
+
 	public function update($table,$set = array(),$where)
 	{
 		$sql = "UPDATE $table SET ";
