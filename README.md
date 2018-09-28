@@ -16,6 +16,12 @@ It should work on 5.4.8 as well, but we strongly advise you NOT to run such old 
 ```git clone https://github.com/justalinko/panicode```
 
 
+## Creating simple CRUD
+
+```$ php panicode```
+```Databases -> create database -> create connection -> Import database```
+```Routes -> Default routes [ panicode_crud ]```
+
 ## License
 
 
