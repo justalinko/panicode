@@ -18,9 +18,13 @@ It should work on 5.4.8 as well, but we strongly advise you NOT to run such old 
 
 ## Creating simple CRUD
 
-### ```$ php panicode```
-### ```Databases -> create database -> create connection -> Import database```
-### ```Routes -> Default routes [ panicode_crud ]```
+```$ php panicode```
+
+
+```Databases -> create database -> create connection -> Import database```
+
+
+```Routes -> Default routes [ panicode_crud ]```
 
 ## License
 
