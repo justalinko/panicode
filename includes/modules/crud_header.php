@@ -1,3 +1,8 @@
+<?php 
+
+if(!$CONFIG['url']['ep'] && $CONFIG['url']['p'] == 'crud_panicode'){
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,3 +32,7 @@
                 }
             }
 </script>
+
+<?php
+}
+?>

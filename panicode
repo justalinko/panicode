@@ -55,7 +55,7 @@ Class PaniCode_{
 		self::ActionList();
 		self::Selection();
 		self::TakeAction();
-		self::PanicNow();
+		//self::PanicNow();
 	}
 
 	public function Selection()

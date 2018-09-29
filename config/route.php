@@ -14,15 +14,15 @@
 
 /**
 *
-* Default route :: ./includes/crud_panicode.php
+* Default route :: ./includes/AppMain.php
 */
 
-$CONFIG['route']['base_dir'] = './includes/modules/';
+$CONFIG['route']['base_dir'] = './includes/';
 
-$CONFIG['route']['default'] = 'crud_panicode';
+$CONFIG['route']['default'] = 'AppMain';
 
-$CONFIG['route']['static_header'] = 'crud_header';
+$CONFIG['route']['static_header'] = 'modules/crud_header';
 
-$CONFIG['route']['static_footer'] = 'crud_footer';
+$CONFIG['route']['static_footer'] = 'modules/crud_footer';
 
 $CONFIG['route']['static_sidebar'] = '';

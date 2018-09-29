@@ -17,7 +17,7 @@
 			<h4>Code for fast project </h4>
 			<div class="spacer-1">
 				<?=$fedoracss->button('dark','Download',['onclick' => 'window.open("https://github.com/justalinko/panicode")']);?>&nbsp;
-				<?=$fedoracss->button('dark','Documentation');?>
+				<?=$fedoracss->button('dark','Documentation',['onclick' => 'window.location.href="'.$base_url.'"']);?>
 			</div>
 			<small>Version 1.0-2018</small>
 		</header>

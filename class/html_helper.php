@@ -16,16 +16,23 @@ Class html_helper{
 
 	public function assets($file,$tag='link',$add=array())
 	{
+		require 'config/url.php';
+		if(empty($CONFIG['url']['base_url']))
+		{
+			$base_url = './';
+		}else{
+			$base_url = $CONFIG['url']['base_url'];
+		}
 		$html = "\n\n<!-- html helper, PaniCode -->\n";
 		switch ($tag) {
 			case 'link':
-				$html.="<link rel=\"stylesheet\" href=\"./assets/css/{$file}\" type=\"text/css\"";
+				$html.="<link rel=\"stylesheet\" href=\"{$base_url}/assets/css/{$file}\" type=\"text/css\"";
 				break;
 			case 'img':
 				$html.="<img src=\"./assets/img/{$file}\" ";
 				break;
 			case 'script':
-				$html.="<script type=\"text/javascript\" src=\"./assets/js/{$file}\" ";
+				$html.="<script type=\"text/javascript\" src=\"{$base_url}/assets/js/{$file}\" ";
 				break;
 			case 'emptylink':
 				$html.="<link href=\"{$file}\" type=\"text/css\"";
