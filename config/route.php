@@ -21,8 +21,18 @@ $CONFIG['route']['base_dir'] = './includes/';
 
 $CONFIG['route']['default'] = 'AppMain';
 
-$CONFIG['route']['static_header'] = 'modules/crud_header';
+$CONFIG['route']['static_header'] = '';
 
-$CONFIG['route']['static_footer'] = 'modules/crud_footer';
+$CONFIG['route']['static_footer'] = '';
 
 $CONFIG['route']['static_sidebar'] = '';
+
+
+// Except. kecuali
+
+$CONFIG['route']['except_header'] = ['auth'];
+
+$CONFIG['route']['except_footer'] = ['auth'];
+
+$CONFIG['route']['except_sidebar'] = ['auth'];
+
