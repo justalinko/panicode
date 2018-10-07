@@ -1,0 +1,131 @@
+#!/usr/bin/php
+<?php 
+/**
+* [ Panicode v1.0 ] 
+* 
+* 
+*
+* @author Alin Koko Mansuby < alinkokomansuby@gmail.com >
+* @version 1.0
+* @copyright 2018 alinko.id
+*
+*
+*/
+
+Class PaniCode_{
+
+	public static $readLine;
+	public static $ActionList;
+	/*public function __construct()
+	{
+		require 'commander/template.php';
+	}*/
+	public function banner()
+	{
+		print "
+
+ ____             _  ____          _      
+|  _ \ __ _ _ __ (_)/ ___|___   __| | ___ 
+| |_) / _` | '_ \| | |   / _ \ / _` |/ _ \
+|  __/ (_| | | | | | |__| (_) | (_| |  __/
+|_|   \__,_|_| |_|_|\____\___/ \__,_|\___|
+                                
++-----------------------[ By : Alinko ]--+
+| PaniCode Commander v1.0-2018           | 
++----------------------------------------+
+
+";
+	}
+	public function Message($type,$msg = 'Selesai menjalankan perintah ~')
+	{
+		if($type=='success')
+		{
+			echo "[+] ".$msg."  [OK] ".PHP_EOL;
+		}elseif($type=='failed')
+		{
+			echo "[!] ".$msg." [FAILED] ".PHP_EOL;
+		}elseif($type=='error')
+		{
+			echo "[X] ".$msg." [ERROR] ".PHP_EOL;
+		}
+	}
+	public function PanicNow()
+	{
+		self::banner();
+		self::ActionList();
+		self::Selection();
+		self::TakeAction();
+		//self::PanicNow();
+	}
+
+	public function Selection()
+	{
+		echo "PaniCode::TakeAction >>"; self::$readLine=trim(fgets(STDIN));
+		if(self::$readLine == '')
+		{
+			self::PanicNow();
+		}
+	}
+
+	public function ActionList()
+	{
+		self::$ActionList = ['PHP Server','Create Modules','Create Class','Database','Routes'];
+		$n=0;
+		foreach(self::$ActionList as $list)
+		{
+			echo "[".$n++."] ".$list.PHP_EOL;
+		}
+		echo PHP_EOL;
+	}
+	public function console($cmd)
+	{
+if(function_exists('system')) {     
+    @ob_start();    
+    @system($cmd);    
+    $c = @ob_get_contents();    
+    @ob_end_clean();    
+    return $c;  
+  } elseif(function_exists('exec')) {     
+    @exec($cmd,$results);     
+    $c = "";    
+    foreach($results as $result) {      
+      $c .= $result;    
+    } return $c;  
+  } elseif(function_exists('passthru')) {     
+    @ob_start();    
+    @passthru($cmd);    
+    $c = @ob_get_contents();    
+    @ob_end_clean();    
+    return $c;  
+  } elseif(function_exists('shell_exec')) {     
+    $c = @shell_exec($cmd);     
+    return $c;  
+  }
+
+	}
+	public function TakeAction()
+	{
+		require 'commander/template.php';
+		echo PHP_EOL;
+		echo "+---------------------------+".PHP_EOL;
+		echo "|      PaniCode v1.0-2018   |".PHP_EOL;
+		echo "+---------------------------+".PHP_EOL;
+		echo "Selection :: ".self::$ActionList[self::$readLine];
+		echo PHP_EOL;
+		$filename = self::$readLine."-".strtolower(str_replace(" ","_",self::$ActionList[self::$readLine])).'.php';
+		if(file_exists('commander/'.$filename))
+		{
+			require 'commander/'.$filename;
+		}else{
+			echo "[!] ".$filename." Not found ".PHP_EOL;
+			die("[!] Action not found !".PHP_EOL);
+		}
+	}
+
+}
+
+
+
+PaniCode_::panicNow();
+
+?>

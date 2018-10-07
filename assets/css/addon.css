@@ -1,0 +1,20 @@
+code.html {
+  background: #eee !important;
+  font-family: monospace;
+  word-wrap: break-word;
+  width: 100%;
+  border-left: 2px solid #3d9970 !important;
+  padding: 8px 16px;
+  margin-top: 16px;
+  font-size: 15px;
+  display: block;
+}
+code.html .t {
+  color: #800000 !important;
+}
+code.html .p {
+  color: #37bc9b !important;
+}
+code.html .v {
+  color: #3bafda !important;
+}
