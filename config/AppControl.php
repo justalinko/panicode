@@ -1,5 +1,6 @@
 <?php 
 
+<<<<<<< HEAD
 $check_exist = dirname(__DIR__).'/configuration.php';
 
 if(file_exists($check_exist))
@@ -13,6 +14,8 @@ if(file_exists($check_exist))
 	exit;
 }
 
+=======
+>>>>>>> 28da34ea29b4683bb85226ac5858bb422292ba64
 $not_included_config_file = [
 							$_SERVER['PHP_SELF'], // AppControl.php
 							'.',
