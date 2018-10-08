@@ -30,17 +30,9 @@ $CONFIG['route']['static_sidebar'] = '';
 
 // Except. kecuali
 
-<<<<<<< HEAD
-$CONFIG['route']['except_header'] = [];
-
-$CONFIG['route']['except_footer'] = [];
-
-$CONFIG['route']['except_sidebar'] = [];
-=======
 $CONFIG['route']['except_header'] = ['auth'];
 
 $CONFIG['route']['except_footer'] = ['auth'];
 
 $CONFIG['route']['except_sidebar'] = ['auth'];
->>>>>>> 28da34ea29b4683bb85226ac5858bb422292ba64
 

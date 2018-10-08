@@ -12,11 +12,7 @@
 */
 
 
-<<<<<<< HEAD
 $CONFIG['url']['base_url'] = $PANICODE['site']['base_url'];
-=======
-$CONFIG['url']['base_url'] = 'http://127.0.0.1:5758/';
->>>>>>> 28da34ea29b4683bb85226ac5858bb422292ba64
 
 $CONFIG['url']['ep']	= empty($_GET['p']);
 $CONFIG['url']['p']		= @$_GET['p'];

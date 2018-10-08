@@ -144,7 +144,7 @@ $admin_dir = $_POST['base_admin'];
 $data = array($hostname,$username,$password,$database,$base_url,$base_dir,$admin_dir);
 
 $cf = @file_put_contents('configuration.php',template_config($data));
-$dbs = @file_get_contents('panicode.sql');
+$dbs = @file_get_contents('catdb.sql');
 $sql = "";
 foreach (explode(";\n", $dbs) as $query) {
             $sql = trim($query);

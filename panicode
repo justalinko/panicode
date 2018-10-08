@@ -69,7 +69,7 @@ Class PaniCode_{
 
 	public function ActionList()
 	{
-		self::$ActionList = ['PHP Server','Create Modules','Create Class','Database','Routes'];
+		self::$ActionList = ['PHP Server','Create Modules','Create Class','Routes'];
 		$n=0;
 		foreach(self::$ActionList as $list)
 		{
