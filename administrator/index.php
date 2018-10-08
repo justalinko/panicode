@@ -60,6 +60,6 @@ switch ($path_url) {
 include "footer.php";
 
 } else {
-	redirect(base_admin()."login.php");
+	echo "<meta http-equiv='refresh' content='0;url=login.php'>";
 }
 ?>

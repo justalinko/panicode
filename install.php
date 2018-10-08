@@ -111,7 +111,7 @@ if(empty($_GET['m']))
 						$('#ap').html('<h3 class="align-center text-white">Installasi berhasil!</h3><meta http-equiv="refresh" content="2;url=./";?>');
 					}else{
 						$('#ap').attr('class','alert danger spacer-2');
-						$('#ap').html('<h3 class="align-center text-white">Installasi gagal!</h3>');
+						$('#ap').html('<h3 class="align-center text-white">Installasi gagal!</h3> <p>'+data+'</p>');
 					}
 				},error:function(data)
 				{
@@ -144,7 +144,7 @@ $admin_dir = $_POST['base_admin'];
 $data = array($hostname,$username,$password,$database,$base_url,$base_dir,$admin_dir);
 
 $cf = @file_put_contents('configuration.php',template_config($data));
-$dbs = @file_get_contents('catdb.sql');
+$dbs = @file_get_contents('panicode.sql');
 $sql = "";
 foreach (explode(";\n", $dbs) as $query) {
             $sql = trim($query);
@@ -154,9 +154,11 @@ foreach (explode(";\n", $dbs) as $query) {
                 mysqli_query($connect,$sql);
 } 
 }
-if($cf)
+if(is_writable(__DIR__) && $cf)
 {
 	echo "good";
+}else{
+	echo "<font color=green>directory ".__DIR__." Not writable</font>";
 }
 
 }
