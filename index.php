@@ -1,27 +1,27 @@
 <?php 
 /**
-* [ Panicode v1.0 ] 
+***************************************************************
+* PaniCode v2.0-2018
 * 
-* index.php
-* 
+* Filename : index.php
 *
 * @author Alin Koko Mansuby < alinkokomansuby@gmail.com >
-* @version 1.0
-* @copyright 2018 alinko.id
+* @version 2.0-2018
+* @copyright 2018 (c) alinko.id
+* @license The MIT License (MIT)
 *
-*
+***************************************************************
 */
 
-// checking file exists.
-if(file_exists('autoloader.php'))
 
-{
-	require_once 'autoloader.php';
+
+if(file_exists(__DIR__.'/autoloader.php')){
+	require_once(__DIR__.'/autoloader.php');
 }else{
-
-	die('Error : autoloader file not exists');
+	print "autoloader.php not found.";
+	exit;
 }
 
-require_once 'includes/AppControl.php';
+require_once(Config::path_includes('AppControl'));
 
 ?>
