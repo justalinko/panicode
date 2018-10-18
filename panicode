@@ -1,30 +1,67 @@
 #!/usr/bin/php
 
 <?php
-
-#require_once(__DIR__.'/autoloader.php');
+/**
+***************************************************************
+* PaniCode v2.0-2018
+* 
+*
+* @author Alin Koko Mansuby < alinkokomansuby@gmail.com >
+* @version 2.0-2018
+* @copyright 2018 (c) alinko.id
+* @license The MIT License (MIT)
+*
+***************************************************************
+*/
 require_once(__DIR__.'/pc_command/Template.php');
 
 Class PaniCode {
+	public static $cfg;
 	public static $select;
 	public static $menulist = ['1' => 'Modules',
 							   '2' => 'Classes',
-							   '3' => 'Config',
+							   '3' => 'Configure',
 							   '4' => 'Files'];
-
-    public function __construct()
-    {
-    	if(substr(PHP_OS,0,3)  != 'nix')
+	public function panic_now()
+	{
+	//require_once(__DIR__.'/configuration.php');
+    self::$cfg=$config;
+    	if(substr(PHP_OS,0,3)  != 'Lin')
     	{
     		die('This supported for linux system only.');
     	}
-    }
-	public function panic_now()
-	{
+
 		self::banner();
+		self::check_install();
 		self::menu();
 		self::ask('Select');
 		self::action();
+	}
+	public function check_install()
+	{
+		if(!file_exists(__DIR__.'/configuration.php'))
+		{
+			print "
++------------------------------------------------------------+
+|".self::colors(1)."  _   _       _     _           _        _ _          _  ".self::colors(0)."   |
+|".self::colors(1)." | \ | | ___ | |_  (_)_ __  ___| |_ __ _| | | ___  __| | ".self::colors(0)."   |
+|".self::colors(1)." |  \| |/ _ \| __| | | '_ \/ __| __/ _` | | |/ _ \/ _` | ".self::colors(0)."   |
+|".self::colors(1)." | |\  | (_) | |_  | | | | \__ \ || (_| | | |  __/ (_| | ".self::colors(0)."   |
+|".self::colors(1)." |_| \_|\___/ \__| |_|_| |_|___/\__\__,_|_|_|\___|\__,_| ".self::colors(0)."   |
+|".self::colors(1)."                                                         ".self::colors(0)."   |
++------------------------------------------------------------+
+";
+self::ask('Do you want to install ? [Y/n]');
+if(self::$select == 'Y' || self::$select == '' || self::$select == 'y')
+{
+	self::do_install();
+}else{
+	echo "[+] Hv nice day .".PHP_EOL;
+}
+exit;
+		}else{
+			require_once(__DIR__.'/configuration.php');
+		}
 	}
 	public function colors($type=1)
 	{
@@ -83,6 +120,96 @@ print
 			exit;
 		}
 	}
+	public function create_file($dir = array(),$content = array())
+	{
+		$n=0;
+		$c=0;
+		foreach($dir as $d)
+		{
+			$fp = fopen($d,'w');
+			fwrite($fp,$content[$c++]);
+			fclose($fp);
+		}
+
+		return $fp;
+	}
+	public function message($r=1)
+	{
+		if($r==1)
+		{
+			echo self::colors(2)."[+] [".date('H:i:s')."]".self::colors(0)." Successfully run jobs ~".PHP_EOL;
+		}else{
+			echo self::colors(1)."[-] [".date('H:i:s')."]".self::colors(0)." Failed to run jobs :(((".PHP_EOL;
+		}
+	}
+	public function do_install()
+	{
+		print "
+		+-------------------------------------------------------------+
+		| To do installation, you must input correct information data.|
+		+-------------------------------------------------------------+
+
+		+ If you don't know just enter it, that will generate default data.
+		
+		";
+		$path=[];
+		$url=[];
+		$db=[];
+		$route=[];
+
+		self::ask('install / path::includes');
+		$path['includes']=(empty(self::$select)) ? 'pc_includes/' : self::$select;
+		self::ask('install / path::modules');
+		$path['modules']=(empty(self::$select)) ? 'pc_includes/pc_modules/' : self::$select;
+		self::ask('install / path::views');
+		$path['views']=(empty(self::$select)) ? 'pc_includes/pc_views/' : self::$select;
+		self::ask('install / path::class');
+		$path['class']=(empty(self::$select)) ? 'pc_includes/pc_class/' : self::$select;
+		self::ask('install / path::admin');
+		$path['admin']=(empty(self::$select)) ? 'pc_admin/' : self::$select;
+
+		self::ask('install / url::base');
+		$url['base']=(empty(self::$select)) ? 'http://127.0.0.1:5758/' : self::$select;
+		self::ask('install / url::admin');
+		$url['admin']=(empty(self::$select)) ? 'http://127.0.0.1:5758/pc_admin/' : self::$select;
+		self::ask('install / url::module');
+		$url['module']=(empty(self::$select)) ? 'm' : self::$select;
+		self::ask('install / url::page');
+		$url['page']=(empty(self::$select)) ? 'p' : self::$select;
+		self::ask('install / url::id');
+		$url['id']=(empty(self::$select)) ? 'id' : self::$select;
+
+
+		self::ask('install / db::hostname');
+		$db['hostname']=(empty(self::$select)) ? 'localhost' : self::$select;
+		self::ask('install / db::username');
+		$db['username']=(empty(self::$select)) ? 'root' : self::$select;
+		self::ask('install / db::password');
+		$db['password']=(empty(self::$select)) ? '' : self::$select;
+		self::ask('install / db::database');
+		$db['database']=(empty(self::$select)) ? 'database' : self::$select;
+
+		self::ask('install / route::default');
+		$route['default']=(empty(self::$select)) ? 'AppMain' : self::$select;
+		self::ask('install / route::default_admin');
+		$route['default_admin']=(empty(self::$select)) ? 'dashboard' : self::$select;
+		self::ask('install / route::static_header');
+		$route['static_header']=(empty(self::$select)) ? '' : self::$select;
+		self::ask('install / route::static_footer');
+		$route['static_footer']=(empty(self::$select)) ? '' : self::$select;
+		self::ask('install / route::static_sidebar');
+		$route['static_sidebar']=(empty(self::$select)) ? '' : self::$select;
+
+		echo "[+] Installation in proccess ... ";
+		sleep(2);
+		$int=Template::configurationTemplate($path,$url,$db,$route);
+if(self::create_file([__DIR__.'/configuration.php'],[Template::header().$int]))
+{
+	self::message(1);
+	}else{
+	self::message(0);
+	}
+}
 }
 
 

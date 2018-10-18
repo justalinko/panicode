@@ -272,7 +272,15 @@
 			{
 				$('#btn-login').click(function()
 				{
-					alert('login');
+					$.ajax({
+						url : 'ajax.php?m=auth_login',
+						type : 'POST',
+						data : $('#form_login').serialize(),
+						success:function(data)
+						{
+							window.location.href='index.php';
+						}
+					});
 					return false;
 				});
 			});

@@ -42,7 +42,7 @@
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="?">
+						<a href="<?=Config::base_admin('?p=dashboard&m=all');?>">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -65,7 +65,7 @@
 						<ul class="submenu">
 
 							<li class="">
-								<a href="">
+								<a href="<?=Config::base_admin('?p=page&m=all');?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Page Menu
 								</a>
@@ -73,7 +73,7 @@
 								<b class="arrow"></b>
 							</li>
 							<li class="">
-								<a href="">
+								<a href="<?=Config::base_admin('?p=user_group&m=all');?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									User Group
 								</a>
@@ -82,7 +82,7 @@
 							</li>
 
 							<li class="">
-								<a href="">
+								<a href="<?=Config::base_admin('?p=user_management&m=all');?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									User management
 								</a>
@@ -90,7 +90,7 @@
 								<b class="arrow"></b>
 							</li>
 							<li class="">
-								<a href="">
+								<a href="<?=Config::base_admin('?p=menu_management&m=all');?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Menu management
 								</a>
@@ -101,10 +101,7 @@
 
 						</ul>
 					</li>
-
 					
-						</ul>
-					</li>
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -118,13 +115,14 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
+								<a href="<?=Config::base_admin();?>">Home</a>
 							</li>
-<!-- 
+							<?php if(!Config::empty_page()): ?>
 							<li>
-								<a href="#">Other Pages</a>
+								<a href="<?=Config::base_admin('?p='.Config::get_page().'&m=all');?>"><?=Config::get_page();?></a>
 							</li>
-							<li class="active">Blank Page</li> -->
+							<li class="active"><?=Config::get_module();?></li>
+							<?php endif;?>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -204,3 +202,14 @@
 								</div><!-- /.pull-left -->
 							</div><!-- /.ace-settings-box -->
 						</div><!-- /.ace-settings-container -->
+						<?php if(!Config::empty_page()): ?>
+						<div class="page-header">
+							<h1>
+								<?=Config::get_page();?>
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									<?=Config::get_module();?>
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+						<?php endif; ?>

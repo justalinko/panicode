@@ -37,7 +37,34 @@
 
 		<!--[if !IE]> -->
 		<script src="assets/js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$('select[name="method"]').change(function()
+				{
+					var vv=$('select[name="method"]').val();
 
+					if(vv == 'crud')
+					{
+						$('#stable').show();
+					}else{
+						$('#stable').hide();
+					}
+				});
+
+				$('select[name="type_menu"]').change(function()
+				{
+					var vv=$('select[name="type_menu"]').val();
+					/*alert(vv);*/
+					if(vv == 'page')
+					{
+						$('#method').show();
+					}else{
+						$('#method').hide();
+					}
+				})
+			});
+		</script>
 		<!-- <![endif]-->
 
 		<!--[if IE]>
@@ -55,5 +82,15 @@
 		<script src="assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
+
+		<!-- datatables -->
+		<script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$('#datatables').dataTable();
+		</script>
+
+		<!-- select2 -->
+		<script type="text/javascript" src="assets/js/select2.min.js"></script>
 	</body>
 </html>

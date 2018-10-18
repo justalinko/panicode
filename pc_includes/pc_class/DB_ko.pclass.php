@@ -14,7 +14,7 @@ Class DB_ko{
 	public $config = array();
 	public $connection;
 
-	public function connect($c = array())
+	public function __construct($c = array())
 	{
 		if(is_array($c)){
 		$this->connection = mysqli_connect($c['hostname'],$c['username'],$c['password'],$c['database']);
@@ -123,7 +123,7 @@ Class DB_ko{
 	}
 
 
-	public function update($table,$set = array(),$where)
+	public function update($table,$set = array(),$where=array())
 	{
 		$sql = "UPDATE $table SET ";
 		$j = count($set)-1;
@@ -134,11 +134,16 @@ Class DB_ko{
 		if($n++ != $j){
 		$sql.=",";}
 		}
-		$sql.= "WHERE ";
-		foreach($where as $ww=>$kemana)
+		$n=0;
+		$j=count($where)-1;
+		foreach($where as $tb=>$cl)
 		{
-			$sql.= "$ww='$kemana'";
+			$sql.= "$tb='$cl'";
+			if($n++ != $j){
+			$sql.=" AND ";
+		 	}
 		}
+		$sql.= "";
 		return $this->query($sql);
 	}
 	public function delete($table,$where)
@@ -195,6 +200,63 @@ Class DB_ko{
 	public function free($data)
 	{
 		return mysqli_free_result($data);
+	}
+
+	public function check_exist($table,$data=array())
+	{
+		$sql=$this->select_where($table,$data);
+		$c=$this->count_rows($sql);
+
+		if($c > 0)
+		{
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+	public function fetch_rows($table)
+	{
+		$sql = $this->select($table);
+
+		return $this->fetch($sql);
+	}
+	public function fetch_rows_where($table,$where = array())
+	{
+		$sql = $this->select_where($table,$where);
+		$data = $this->fetch($sql);
+
+		return $data;
+	}
+	public function fetch_rows_array($table)
+	{
+		$re=[];
+		$sql = $this->select($table);
+		while($data=$this->fetch($sql))
+		{
+			$re[] = $data;
+		}
+		return $re;
+	}
+	public function fetch_array_where($table,$where = array())
+	{
+		$re=[];
+		$sql = $this->select_where($table);
+		while($data=$this->fetch($sql))
+		{
+			$re[] = $data;
+		}
+		return $re;
+	}
+	public function fetch_custom_array($query)
+	{
+		$re=[];
+		$sql = $this->query($query);
+		while($data=$this->fetch($sql))
+		{
+			$re[]=$data;
+		}
+		return $re;
 	}
 }
 
